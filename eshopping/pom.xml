@@ -11,6 +11,7 @@
 
 	<properties>
 		<javaee.version>8.0</javaee.version>
+		<spring.version>4.3.18.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -30,10 +31,26 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- spring web mvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- JSTL -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
 	</dependencies>
+	
 	<build>
 		<plugins>
-		<!--  Update to latest version of Java  -->
+			<!-- Update to latest version of Java -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -42,8 +59,8 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
 		<finalName>eshopping</finalName>
 	</build>
+	
 </project>
