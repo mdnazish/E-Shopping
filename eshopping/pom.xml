@@ -15,6 +15,13 @@
 	</properties>
 
 	<dependencies>
+	
+	<!-- Linking eshoppingbackend project -->
+	<dependency>
+	<groupId>com.mn</groupId>
+	<artifactId>eshoppingbackend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 
 		<!-- Java EE API -->
 		<dependency>

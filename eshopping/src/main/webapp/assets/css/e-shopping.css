@@ -6,10 +6,36 @@
 
 body {
   padding-top: 54px;
+  height: 100%
 }
 
 @media (min-width: 992px) {
+	
   body {
     padding-top: 56px;
+    
+    
   }
+  
+}
+
+/* Custom Styleing - To fix footer problem*/
+
+html{
+	height:100%
+	}
+
+  footer {
+    position: absolute;
+    bottom: 0px;
+    height:150px;
+    width: 100%;
+}
+
+.wrapper{
+	min-height: 100%;
+	position: relative;
+}
+.content{
+	padding-bottom: 150px;
 }
