@@ -15,6 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.18.RELEASE</spring.version>
 		<hibernate.version>5.2.7.Final</hibernate.version>
+		<jackson.version>2.8.7</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -56,10 +57,20 @@
 			<version>2.1.1</version>
 		</dependency>
 
-
-
-
-
+		<!-- Jackson API -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<!--  For getting same version 2.8.7 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+ 
 		<!-- JUnit Version 4.12 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -69,6 +80,7 @@
 		</dependency>
 
 	</dependencies>
+
 
 	<build>
 		<plugins>
