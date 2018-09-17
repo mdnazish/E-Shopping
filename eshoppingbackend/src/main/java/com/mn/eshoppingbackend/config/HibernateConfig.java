@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 
-	private final String DATABASE_URL = "jdbc:h2:tcp://localhost/~/ehopping";
+	//change the below based on the DBMS you choose
+	private final String DATABASE_URL = "jdbc:h2:tcp://localhost/~/eshopping";
 	private final String DATABASE_DRIVER ="org.h2.Driver";
 	private final String DATABASE_DIALECT ="org.hibernate.dialect.H2Dialect";
 	private final String DATABASE_USERNAME ="sa";
@@ -26,7 +27,7 @@ public class HibernateConfig {
 	
 	
 	@Bean
-	private DataSource getDataSource() {
+	public DataSource getDataSource() {
 		
 		BasicDataSource dataSource = new BasicDataSource();
 		
@@ -66,7 +67,7 @@ public class HibernateConfig {
 	@Bean
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-		return transactionManager;
+		HibernateTransactionManager txManager = new HibernateTransactionManager(sessionFactory);
+		return txManager;
 	}
 }
