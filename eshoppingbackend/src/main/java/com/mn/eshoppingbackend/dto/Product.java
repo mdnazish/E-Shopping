@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Product {
 	
@@ -31,7 +33,7 @@ public class Product {
 	 * Now we will add @JsonIgnore to ignore the fields that we don't want to sent in the form of JSON.
  	 */
 	
-	//@JsonIgnore 
+	@JsonIgnore 
 	private String description;
 	
 	@Column(name = "unit_price")
@@ -39,15 +41,15 @@ public class Product {
 	
 	private int quantity;
 	
-	//@JsonIgnore // it doesn't convert this field into JSON Format
+	@JsonIgnore // it doesn't convert this field into JSON Format at the time of Testing GET Or POST request using Postman etc...
 	@Column(name = "is_active")
 	private boolean active;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@Column(name = "category_id")
 	private int categoryId;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@Column(name = "supplier_id")
 	private int supplierId;
 	
