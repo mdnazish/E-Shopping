@@ -40,6 +40,8 @@ ${contextRoot} says - ${greeting}
 
 <script>
 	window.menu = '${title}';
+	
+	window.contextRoot = '${contextRoot}';
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -51,6 +53,11 @@ ${contextRoot} says - ${greeting}
 <!-- Business Tycoon Theme for this template -->
 <link href="${css}/theme-business-tycoon.css" rel="stylesheet">
 
+ <!-- Font Awesome CSS -->
+<link href="${css}/font-awesome.css" rel="stylesheet">
+
+<!-- Bootstrap DataTables CSS -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
 
 </head>
 
@@ -91,6 +98,12 @@ ${contextRoot} says - ${greeting}
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+		
+		<!-- DataTable Plugins -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- DataTable Bootstrap Script -->
+		<script src="${js}/dataTables.bootstrap4.js"></script>
 
 		<!-- based on our project requirement eshopping.js -->
 		<script src="${js}/eshopping.js"></script>

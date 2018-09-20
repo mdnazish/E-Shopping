@@ -28,7 +28,7 @@ html{
   footer {
     position: absolute;
     bottom: 0px;
-    height:150px;
+    height: 150px;
     width: 100%;
 }
 
@@ -38,4 +38,8 @@ html{
 }
 .content{
 	padding-bottom: 150px;
+}
+.dataTableImg{
+	width: 100px;
+	height: 100px;
 }
