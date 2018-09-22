@@ -1,20 +1,28 @@
 package com.mn.eshopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mn.eshoppingbackend.dao.CategoryDao;
+import com.mn.eshoppingbackend.dao.ProductDao;
 import com.mn.eshoppingbackend.dto.Category;
+import com.mn.eshoppingbackend.dto.Product;
 
 @Controller
 public class PageController {
 	
+	private static final Logger logger= LoggerFactory.getLogger(PageController.class);
+	
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private ProductDao productDao;
 
 	/*
 	 * Simple Request Mapping Ex- http://localhost:7575/eshopping/
@@ -26,6 +34,9 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 //		mv.addObject("greeting", "<h2>Welcome To E-Shopping<h2>");
 		mv.addObject("title", "Home");
+		
+		logger.info("Inside PageController index method: INFO");
+		logger.debug("Inside PageController index method: DEBUG");
 	
 		//passing the list of categories
 		mv.addObject("categories", categoryDao.list());
@@ -98,6 +109,29 @@ public class PageController {
 		
 		return mv;
 	}
+	
+	/* 
+	 *  Viewing a single product when clicking icon either view or add-cart
+	 */
+	@RequestMapping(value = "/show/{id}/product")
+	public ModelAndView showSingleProduct(@PathVariable int id) {
+		
+		ModelAndView mv = new ModelAndView("page");
+		Product product = productDao.get(id);
+		
+		// update the view cont
+		product.setViews(product.getViews() + 1); 
+		productDao.update(product);
+		//-----------------------------
+		
+		mv.addObject("title", product.getName());
+		mv.addObject("product", product);
+		
+		mv.addObject("userClickShowProduct", true);
+		
+		return mv;
+	}
+	
 
 	/** Just for Demonstration to understand 
 	 * 		@RequestParam and

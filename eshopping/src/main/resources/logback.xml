@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="consoleAppender"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%-5level %msg %d{HH:mm:ss.SSS} %logger{36} %n</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- level="INFO" will display 2 time, so add additivity="false" it will 
+		display 1 time only <logger name="com.mn" level="INFO"> -->
+
+	<logger name="com.mn" level="DEBUG" additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- here add level="INFO" -->
+	<root level="INFO">
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>
