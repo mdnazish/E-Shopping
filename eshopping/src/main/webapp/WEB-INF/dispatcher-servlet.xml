@@ -12,7 +12,7 @@
    <!-- <context:component-scan base-package = "com.mn.onlineshopping.controller" /> -->
    
    <!-- for scanning all package component -->
-   <context:component-scan base-package = "com.mn.eshopping.controller" />
+   <context:component-scan base-package = "com.mn.eshopping" />
    <context:component-scan base-package = "com.mn.eshoppingbackend" />
 
    <bean id="viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">

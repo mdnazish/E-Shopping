@@ -10,7 +10,7 @@
 
 	<!-- level="INFO" will display 2 time, so add additivity="false" it will 
 		display 1 time only <logger name="com.mn" level="INFO"> -->
-
+		
 	<logger name="com.mn" level="DEBUG" additivity="false">
 		<appender-ref ref="consoleAppender" />
 	</logger>
