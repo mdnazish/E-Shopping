@@ -45,6 +45,7 @@
 				<div class="navbar-header">
 					<a class="navbar-brand" href="${contextRoot}/home">Home</a>
 				</div>
+			</div>
 		</nav>
 
 		<!-- Page Content / Main Content -->
@@ -62,7 +63,7 @@
 							<h1>${errorTitle}</h1>
 							<hr />
 
-							<blockquote style="word-wrap:break-word">${errorDescription}</blockquote>
+							<blockquote style="word-wrap: break-word">${errorDescription}</blockquote>
 
 						</div>
 					</div>
