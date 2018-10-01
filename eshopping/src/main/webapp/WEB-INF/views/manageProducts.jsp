@@ -54,7 +54,8 @@
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-md-4" for="unitPrice">Enter
-									Unit Price <b>(&#8377;)</b> :</label>
+									Unit Price <b>(&#8377;)</b> :
+								</label>
 								<div class=" col-md-8">
 									<sf:input class=" form-control" type="number" path="unitPrice"
 										id="unitPrice" placeholder="Enter Unit Price" />
@@ -76,6 +77,7 @@
 								<div class=" col-md-8">
 									<sf:input class="form-control" type="file" path="file"
 										id="file" />
+									<sf:errors path="file" cssClass="help-block" element="em" />
 								</div>
 							</div>
 							<div class="form-group row">

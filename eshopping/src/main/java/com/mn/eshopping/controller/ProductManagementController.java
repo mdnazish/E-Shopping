@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mn.eshopping.util.FileUploadUtility;
+import com.mn.eshopping.validator.ProductValidator;
 import com.mn.eshoppingbackend.dao.CategoryDao;
 import com.mn.eshoppingbackend.dao.ProductDao;
 import com.mn.eshoppingbackend.dto.Category;
@@ -67,6 +68,9 @@ public class ProductManagementController {
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product newProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
+		//to check a file is an image or not
+		new ProductValidator().validate(newProduct, results);
+		
 		// check if there are any errors
 		if (results.hasErrors()) {
 
