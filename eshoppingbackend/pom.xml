@@ -20,7 +20,7 @@
 
 	<dependencies>
 
-		<!-- Spring Context -->
+		<!-- Spring Core -->
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -34,14 +34,21 @@
 			</exclusions>
 		</dependency>
 
+		<!-- Spring Context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!--  Spring Web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 		<!-- Spring ORM -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -102,6 +109,18 @@
 			<version>1.7.25</version>
 		</dependency>
 
+		<!-- Validation java-api and Hibernate-api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.12.Final</version>
+		</dependency>
 
 		<!-- JUnit Version 4.12 -->
 		<dependency>

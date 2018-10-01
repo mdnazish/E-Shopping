@@ -59,6 +59,9 @@ ${contextRoot} says - ${greeting}
 <!-- Bootstrap DataTables CSS -->
 <link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
 
+<%-- <!-- Bootstrap DataTables Responsive CSS -->
+<link href="${css}/responsive.dataTables.css" rel="stylesheet">
+ --%>
 </head>
 
 <body>
@@ -80,6 +83,11 @@ ${contextRoot} says - ${greeting}
 			<!-- Load only when user click Products -->
 			<c:if test="${userClickProducts == true or userClickCategoryProducts == true }">
 				<%@include file="products.jsp"%>
+			</c:if>
+			
+			<!-- Load only when user click Manage Products -->
+			<c:if test="${userClickManageProducts == true }">
+				<%@include file="manageProducts.jsp"%>
 			</c:if>
 
 			<!-- Load only when user click About Us -->
@@ -110,6 +118,9 @@ ${contextRoot} says - ${greeting}
 		
 		<!-- DataTable Bootstrap Script -->
 		<script src="${js}/dataTables.bootstrap4.js"></script>
+		
+		<%-- <!-- DataTable Bootstrap Responsive Script -->
+		<script src="${js}/dataTables.responsive.js"></script> --%>
 
 		<!-- based on our project requirement eshopping.js -->
 		<script src="${js}/eshopping.js"></script>

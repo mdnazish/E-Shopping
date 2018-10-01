@@ -19,7 +19,7 @@ body {
   
 }
 
-/* Custom Styleing - To fix footer problem*/
+/* Custom Styling - To fix footer problem*/
 
 html{
 	height:100%
@@ -28,7 +28,7 @@ html{
   footer {
     position: absolute;
     bottom: 0px;
-    height: 150px;
+    height: 100px;
     width: 100%;
 }
 
@@ -37,9 +37,13 @@ html{
 	position: relative;
 }
 .content{
+	padding-top: 10px;
 	padding-bottom: 150px;
 }
 .dataTableImg{
 	width: 100px;
 	height: 100px;
+}
+.help-block{
+	color:red;
 }

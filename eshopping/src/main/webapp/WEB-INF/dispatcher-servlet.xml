@@ -1,28 +1,39 @@
-<beans xmlns = "http://www.springframework.org/schema/beans"
-   xmlns:context = "http://www.springframework.org/schema/context"
-   xmlns:mvc = "http://www.springframework.org/schema/mvc"
-   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation = "http://www.springframework.org/schema/beans     
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans     
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd
    http://www.springframework.org/schema/mvc 
    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- for scanning Specific package component -->
-   <!-- <context:component-scan base-package = "com.mn.onlineshopping.controller" /> -->
-   
-   <!-- for scanning all package component -->
-   <context:component-scan base-package = "com.mn.eshopping" />
-   <context:component-scan base-package = "com.mn.eshoppingbackend" />
+	<!-- <context:component-scan base-package = "com.mn.onlineshopping.controller" 
+		/> -->
 
-   <bean id="viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name = "prefix" value = "/WEB-INF/views/" />
-      <property name = "suffix" value = ".jsp" />
-   </bean>
-   
-   <!-- Loading static resources -->
-<mvc:annotation-driven />
-<mvc:resources location="/assets/" mapping="/resources/**" />
+	<!-- for scanning all package component -->
+	<context:component-scan
+		base-package="com.mn.eshopping" />
+	<context:component-scan
+		base-package="com.mn.eshoppingbackend" />
 
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 
+	<!-- 2 implementation of Spring MultipartResolver(I) - StandardServletMultipartResolver 
+		- Servlet 3.0 multipart request parsing CommonsMultipartResolver - Classic 
+		commons-fileupload.jar -->
+
+	<!-- id must be multipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+	<!-- Loading static resources -->
+	<mvc:annotation-driven />
+	<mvc:resources location="/assets/"
+		mapping="/resources/**" />
 </beans>

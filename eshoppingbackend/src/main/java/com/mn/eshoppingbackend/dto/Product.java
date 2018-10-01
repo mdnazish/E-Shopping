@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,8 +21,8 @@ public class Product {
 	/*
 	 * private fields as per DB columns
 	 * @Id is recommended for @Entity annotation
-	 * @GeneratedValue is to auto generate unique id
-	 * @Column is to map fields with DB column (Note : Optional, if column name and field name is same) 
+	 * @GeneratedValue is used to auto generate unique ID
+	 * @Column is used to map fields with DB column (Note : Optional, if column name and field name are same) 
 	 * 
 	 */
 	
@@ -26,7 +31,11 @@ public class Product {
 	private int id;
 	
 	private String code;
+	
+	@NotBlank(message="Please Enter Product Name!")
 	private String name;
+	
+	@NotBlank(message="Please Enter Brand Name!")
 	private String brand;
 	/*
 	 * @JsonIgnore -
@@ -34,14 +43,16 @@ public class Product {
  	 */
 	
 	@JsonIgnore 
+	@NotBlank(message="Please Enter Description For Product!")
 	private String description;
 	
 	@Column(name = "unit_price")
+	@Min(value=1, message="The Price Can't be Less than 1 !")
 	private double unitPrice;
 	
 	private int quantity;
 	
-	@JsonIgnore // it doesn't convert this field into JSON Format at the time of Testing GET Or POST request using Postman etc...
+	@JsonIgnore // doesn't convert this field into JSON Format at the time of Testing GET Or POST request using Postman etc...
 	@Column(name = "is_active")
 	private boolean active;
 	
@@ -55,6 +66,14 @@ public class Product {
 	
 	private int purchases;
 	private int views;
+	
+	/*
+	 * To insert an image we have to use a transient field for uploading a file,
+	 * It would be transient as we don't have to persist into DB but as a file.
+	 * 
+	 */
+	@Transient
+	private MultipartFile file;
 	
 	/*
 	 * no-args / minimal / default constructor 
@@ -141,8 +160,15 @@ public class Product {
 		this.views = views;
 	}
 	
-	// toSting() method to achieve meaningful result
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
+	// toSting() method to achieve meaningful result
 	@Override
 	public String toString() {
 		return "Products [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="

@@ -1,4 +1,6 @@
-<div class="container">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<div class="container table-responsive">
 	<div class="row">
 
 		<!-- would be to display sidebar -->
