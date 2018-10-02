@@ -27,7 +27,6 @@ $(function() {
 		$('#active_' + menu).addClass('active');
 		break;
 	}
-	
 
 	// code for jquery dataTable
 	// create a dataset
@@ -70,6 +69,7 @@ $(function() {
 					columns : [
 							{
 								data : 'code',
+								bSorted : false,
 								mRender : function(data, type, row) {
 									return '<img src="' + window.contextRoot
 											+ '/resources/images/' + data
@@ -120,11 +120,11 @@ $(function() {
 									return str;
 								}
 							} ]
-					
+
 				});
 	}
 
-	// dismissing the alert after 3 seconds of form submission 
+	// dismissing the alert after 3 seconds of form submission
 	var $alert = $('.alert');
 
 	if ($alert.length) {
@@ -132,6 +132,164 @@ $(function() {
 
 			$alert.fadeOut('slow');
 
-		}, 3000)
+		}, 3000);
 	}
+
+	/*----------------------------------+------------------------------------------
+	To Show all Products dataTable for Admin to activate or deactivate products
+	-----------------------------------------------------------------------------*/
+
+	var $adminProductsTable = $('#adminProductsTable');
+
+	// execute the below code only where we have this table
+	if ($adminProductsTable.length) {
+
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+
+		$adminProductsTable
+				.DataTable({
+
+					// data:products
+
+					lengthMenu : [ [ 10, 30, 50, -1 ],
+							[ '10 Records', '30 Records', '50 Records', 'ALL' ] ],
+					pageLength : 30,
+
+					ajax : {
+						url : jsonUrl,
+						dataSrc : ''
+
+					},
+					columns : [
+							{
+								data : 'id'
+							},
+							{
+								data : 'code',
+								bSorted : false,
+								mRender : function(data, type, row) {
+									return '<img src="'
+											+ window.contextRoot
+											+ '/resources/images/'
+											+ data
+											+ '.jpg"  class="adminDataTableImg"/>';
+								}
+							},
+							{
+								data : 'name'
+							},
+							{
+								data : 'brand'
+							},
+							{
+								data : 'quantity',
+								mRender : function(data, type, row) {
+									if (data < 1) {
+										return '<span style="color:red">Out Of Stock. </span>'
+									}
+									return data;
+								}
+							},
+							{
+								data : 'unitPrice',
+								mRender : function(data, type, row) {
+									return '&#8377; ' + data;
+								}
+							},
+
+							{
+								data : 'active',
+								bSortable : false,
+								mRender : function(data, type, row) {
+
+									var str = '';
+
+									str += '<label class="switch">'
+									if (data) {
+										str += '<input type="checkbox" checked="checked" value="'
+												+ row.id + '"/>';
+									} else {
+										str += '<input type="checkbox" value="'
+												+ row.id + '"/>'
+
+									}
+									str += '<div class="slider"></div></label>'
+									return str;
+								}
+							},
+							{
+								data : 'id',
+								bSortable : false,
+								mRender : function(data, type, row) {
+									var str = '';
+
+									str += '<a href="${contextRoot}/manage/'
+											+ data
+											+ '/product" class="btn btn-warning">';
+									str += '<span class="fa fa-pencil"></span></a>';
+
+									return str;
+								}
+
+							} ],
+							
+					initComplete : function() {
+
+						// Bootbox Alert Plugin for toggle switch 
+						//@add "bootbox.min.js" file
+
+						var toggle = this.api(); // api() function of  dataTable
+						toggle
+								.$('.switch input[type="checkbox"]')
+								.on(
+										'change',
+										function() {
+											var checkbox = $(this);
+											var checked = checkbox
+													.prop('checked');
+											var dialogMsg = (checked) ? 'You want to activate this Product?'
+													: 'You want to de-activate this Product';
+											var value = checkbox.prop('value');
+
+											bootbox
+													.confirm({
+														size : 'medium',
+														title : 'Product Activation & De-activation',
+														message : dialogMsg,
+														callback : function(
+																confirmed) {
+
+															if (confirmed) {
+																console
+																		.log(value);
+																
+																var toggleActivationUrl = window.contextRoot + '/manage/product/'+ value + '/activation';
+																
+																$.post(toggleActivationUrl, function(data){
+																	bootbox
+																	.alert({
+																		size : 'medium',
+																		title : 'Information',
+																		message : data
+																				
+																	});
+																	
+																});
+																
+															} else {
+																checkbox
+																		.prop(
+																				'checked',
+																				!checked);
+															}
+														}
+													});
+										});
+					}
+
+				});
+	}
+
+	// --------------------------------------------------------------------------------
+
 });

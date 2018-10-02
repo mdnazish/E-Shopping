@@ -42,7 +42,7 @@ public class Product {
 	 * Now we will add @JsonIgnore to ignore the fields that we don't want to sent in the form of JSON.
  	 */
 	
-	@JsonIgnore 
+	@JsonIgnore // doesn't convert this field into JSON Format at the time of Testing GET Or POST request using Postman etc...
 	@NotBlank(message="Please Enter Description For Product!")
 	private String description;
 	
@@ -52,7 +52,7 @@ public class Product {
 	
 	private int quantity;
 	
-	@JsonIgnore // doesn't convert this field into JSON Format at the time of Testing GET Or POST request using Postman etc...
+	//@JsonIgnore  // Commented for the sake of activation or deactivation using Toggle Button in Product Management.
 	@Column(name = "is_active")
 	private boolean active;
 	

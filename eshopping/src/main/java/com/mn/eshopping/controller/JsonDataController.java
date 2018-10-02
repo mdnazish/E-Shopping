@@ -25,6 +25,14 @@ public class JsonDataController {
 		return productDao.listActiveProducts();
 	}
 	
+	// To Update[activate or deactivate] product using Toggle Button
+	@RequestMapping("admin/all/products")
+	@ResponseBody
+	public List<Product> getAllProductsForAdmin(){
+		
+		return productDao.list();
+	}
+	
 	@RequestMapping("/category/{id}/products")
 	@ResponseBody
 	public List<Product> getProductsByCategory(@PathVariable int id){

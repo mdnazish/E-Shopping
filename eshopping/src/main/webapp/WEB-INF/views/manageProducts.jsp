@@ -111,4 +111,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Product Table for Admin -->
+	<%@include file="./adminUpdateProducts.jsp"%>
+	
 </div>

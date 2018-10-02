@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="container table-responsive">
+<div class="container">
 	<div class="row">
 
 		<!-- would be to display sidebar -->
@@ -14,11 +14,11 @@
 			<!-- Adding breadcrumb component -->
 			<div class="row">
 
-				<div class="col-md-12">
+				<div class="col-md-12 ">
 					<c:if test="${userClickProducts == true}">
-					<script>
-					 window.categoryId = '';
-					</script>
+						<script>
+							window.categoryId = '';
+						</script>
 						<ol class="breadcrumb">
 
 							<li class="breadcrumb-item"><a href="${contextRoot}/home">Home</a></li>
@@ -27,9 +27,9 @@
 					</c:if>
 
 					<c:if test="${userClickCategoryProducts == true}">
-					<script>
-					 window.categoryId = '${category.id}';
-					</script>
+						<script>
+							window.categoryId = '${category.id}';
+						</script>
 						<ol class="breadcrumb">
 
 							<li class="breadcrumb-item"><a href="${contextRoot}/home">Home</a></li>
@@ -40,34 +40,40 @@
 				</div>
 			</div>
 
-				<div class = "row">
-				<div class="col-md-12">
-						<table id="productsTable" class = "table table-hover table-bordered">
+			<div class="row ">
+				<div class="col-md-12 table-responsive">
+					<table id="productsTable" class="table table-hover table-bordered ">
 						<thead>
-						<tr>
-						<th></th>
-						<th>Name</th>
-						<th>Brand</th>
-						<th>Price</th>
-						<th>Qty. Available</th>
-						<th></th>
-						</tr>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Brand</th>
+								<th>Price</th>
+								<th>Qty. Available</th>
+								<th></th>
+							</tr>
 						</thead>
-						
+
+						<!-- Here Table data comming from DB Dynamically using JQuery Code
+							@see eshopping.js 
+							var $productsTable = $('#productsTable');
+							and so on.
+			 			-->
+
 						<tfoot>
-						<tr>
-						<th></th>
-						<th>Name</th>
-						<th>Brand</th>
-						<th>Price</th>
-						<th>Qty. Available</th>
-						<th></th>
-						</tr>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Brand</th>
+								<th>Price</th>
+								<th>Qty. Available</th>
+								<th></th>
+							</tr>
 						</tfoot>
-						</table>
-						</div>
+					</table>
 				</div>
-			
+			</div>
+
 		</div>
 	</div>
 

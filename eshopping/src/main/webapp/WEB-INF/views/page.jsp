@@ -121,6 +121,9 @@ ${contextRoot} says - ${greeting}
 		
 		<%-- <!-- DataTable Bootstrap Responsive Script -->
 		<script src="${js}/dataTables.responsive.js"></script> --%>
+		
+		<!-- Bootbox Alert Script -->
+		<script src="${js}/bootbox.min.js"></script>
 
 		<!-- based on our project requirement eshopping.js -->
 		<script src="${js}/eshopping.js"></script>

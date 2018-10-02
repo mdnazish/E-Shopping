@@ -1,7 +1,5 @@
 package com.mn.eshopping.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -12,24 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mn.eshopping.util.FileUploadUtility;
 import com.mn.eshopping.validator.ProductValidator;
-import com.mn.eshoppingbackend.dao.CategoryDao;
 import com.mn.eshoppingbackend.dao.ProductDao;
-import com.mn.eshoppingbackend.dto.Category;
 import com.mn.eshoppingbackend.dto.Product;
 
 @Controller
 @RequestMapping("/manage")
 public class ProductManagementController {
-
-	@Autowired
-	private CategoryDao categoryDao;
 
 	@Autowired
 	private ProductDao productDao;
@@ -68,9 +63,9 @@ public class ProductManagementController {
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product newProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
-		//to check a file is an image or not
+		// to check a file is an image or not
 		new ProductValidator().validate(newProduct, results);
-		
+
 		// check if there are any errors
 		if (results.hasErrors()) {
 
@@ -80,7 +75,7 @@ public class ProductManagementController {
 
 			return "page";
 		}
-		
+
 		logger.info(newProduct.toString());
 
 		// create a new product record
@@ -92,11 +87,20 @@ public class ProductManagementController {
 		return "redirect:/manage/products?operation=product";
 	}
 
-	// returning categories for all the request mapping with "manageProducts.jsp"
-	@ModelAttribute("categories")
-	public List<Category> getCategories() {
+	@RequestMapping(value = "/product/{id}/activation", method = RequestMethod.POST)
+	@ResponseBody
+	public String toggleProductActivationOrDeactivation(@PathVariable int id) {
+		// it is going to fetch the product from DB
+		Product product = productDao.get(id);
+		boolean isActive = product.isActive();
 
-		return categoryDao.list();
+		// here activating and deactivating based on the value of active field
+		product.setActive(!product.isActive());
+		// here updating product into DB
+		productDao.update(product);
+
+		return (isActive) ? "You Have Successfully Deactivated This Product With ID: " + product.getId()
+				: "You Have Successfully Activated This Product With ID: " + product.getId();
 	}
 
 }
