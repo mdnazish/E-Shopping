@@ -28,6 +28,7 @@ $(function() {
 		break;
 	}
 
+	// Demo Purpose
 	// code for jquery dataTable
 	// create a dataset
 	/*
@@ -135,9 +136,9 @@ $(function() {
 		}, 3000);
 	}
 
-	/*----------------------------------+------------------------------------------
-	To Show all Products dataTable for Admin to activate or deactivate products
-	-----------------------------------------------------------------------------*/
+	/*----------------------------------+-----------------------------------------------------------
+	To Show all Products dataTable for Admin to activate or deactivate products using Toggle button
+	------------------------------------------------------------------------------------------------*/
 
 	var $adminProductsTable = $('#adminProductsTable');
 
@@ -223,7 +224,9 @@ $(function() {
 								mRender : function(data, type, row) {
 									var str = '';
 
-									str += '<a href="${contextRoot}/manage/'
+									str += '<a href="'
+											+ window.contextRoot
+											+ '/manage/'
 											+ data
 											+ '/product" class="btn btn-warning">';
 									str += '<span class="fa fa-pencil"></span></a>';
@@ -232,13 +235,14 @@ $(function() {
 								}
 
 							} ],
-							
+
 					initComplete : function() {
 
-						// Bootbox Alert Plugin for toggle switch 
-						//@add "bootbox.min.js" file
+						// Bootbox Alert Plugin for toggle switch
+						// @add "bootbox.min.js" file
 
-						var toggle = this.api(); // api() function of  dataTable
+						var toggle = this.api(); // api() function of
+						// dataTable
 						toggle
 								.$('.switch input[type="checkbox"]')
 								.on(
@@ -262,20 +266,27 @@ $(function() {
 															if (confirmed) {
 																console
 																		.log(value);
-																
-																var toggleActivationUrl = window.contextRoot + '/manage/product/'+ value + '/activation';
-																
-																$.post(toggleActivationUrl, function(data){
-																	bootbox
-																	.alert({
-																		size : 'medium',
-																		title : 'Information',
-																		message : data
-																				
-																	});
-																	
-																});
-																
+
+																var toggleActivationUrl = window.contextRoot
+																		+ '/manage/product/'
+																		+ value
+																		+ '/activation';
+
+																$
+																		.post(
+																				toggleActivationUrl,
+																				function(
+																						data) {
+																					bootbox
+																							.alert({
+																								size : 'medium',
+																								title : 'Information',
+																								message : data
+
+																							});
+
+																				});
+
 															} else {
 																checkbox
 																		.prop(
@@ -291,5 +302,53 @@ $(function() {
 	}
 
 	// --------------------------------------------------------------------------------
+
+	// jQuery Validation Code
+	// Code for Client-side Form Validation [For- Add New Category]
+
+	var $addcategoryForm = $('#categoryForm');
+
+	if ($addcategoryForm.length) {
+
+		$addcategoryForm.validate({
+			rules : {
+				name : {
+					required : true,
+					minlength : 3
+				},
+				description : {
+					required : true,
+				}
+			},
+			messages : {
+				name : {
+					required : 'Please Enter Category name!',
+					minlength : 'Please enter atleast 3 characters'
+				},
+				description : {
+					required : 'Please Enter Category Description!',
+				}
+			},
+			errorElement : "em",
+			errorPlacement : function(error, element) {
+				errorPlacement(error, element);
+			}
+		});
+	}
+
+	// methods required for validation
+	function errorPlacement(error, element) {
+
+		// Add the 'help-block' class to the error element
+		error.addClass("help-block");
+
+		// add the error label after the input element
+		error.insertAfter(element);
+
+		// add the has-feedback class to the parent div.validate in order to add
+		// icons to inputs
+		element.parents(".validate").addClass("has-feedback");
+	}
+	// --------------------------
 
 });

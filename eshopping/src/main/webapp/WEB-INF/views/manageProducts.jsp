@@ -84,10 +84,18 @@
 								<label class="col-form-label col-md-4" for="categoryId">Select
 									Category :</label>
 								<div class=" col-md-8">
-									<sf:select class="form-control" path="categoryId"
-										id="categoryId" items="${categories}" itemLabel="name"
-										itemValue="id" />
+									<sf:select class="form-control" id="categoryId" path="categoryId"
+										items="${categories}" itemLabel="name" itemValue="id" />
+									<c:if test="${product.id==0}">
+									<br/>
+									
+									<!-- Adding Button to Open the Modal for "Add New Category" --> 
+									<div class="text-right">
+									<button type="button" data-toggle="modal" data-target="#addCategoryModal" class="btn btn-outline-info btn-sm">Add New Category</button>
+									</div>
+									</c:if>
 								</div>
+								
 							</div>
 							<!--  Hidden Fields for Product -->
 							<sf:hidden path="id" />
@@ -105,14 +113,17 @@
 						</sf:form>
 					</div>
 					<div class="card-footer border-primary">
-						<small class="text-muted">Last updated 3 mins ago</small>
+						<small class="text-muted">Add a New Product or Update an Existing Product.</small>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Product Table for Admin -->
 	<%@include file="./adminUpdateProducts.jsp"%>
 	
+	<!-- Add New Category for Admin -->
+	<%@include file="./addNewCategory.jsp"%>
+
 </div>

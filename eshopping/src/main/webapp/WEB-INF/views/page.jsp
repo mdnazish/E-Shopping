@@ -113,6 +113,9 @@ ${contextRoot} says - ${greeting}
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
 		
+		<!-- JQuery Form Validator -->
+		<script src="${js}/jquery.validate.js"></script>
+		
 		<!-- DataTable Plugins -->
 		<script src="${js}/jquery.dataTables.js"></script>
 		
