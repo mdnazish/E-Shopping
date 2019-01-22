@@ -22,7 +22,6 @@ body {
 html{
 	height:100%;
 	}
-
 footer {
     position: absolute;
     bottom: 0px;
@@ -49,8 +48,7 @@ footer {
 }
 .adminDataTableImg{
 	height:50px;
-	width: 50px;
-	
+	width: 50px;	
 }
 
 /* For Toggle Switch */

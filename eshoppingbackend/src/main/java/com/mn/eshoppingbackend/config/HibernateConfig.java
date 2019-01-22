@@ -59,6 +59,13 @@ public class HibernateConfig {
 		properties.put("hibernate.dialect", DATABASE_DIALECT);
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
+		
+		/* To understand the mapping and let the hibernate create the tables for us
+		* values :- update - create table if not exist or update if any changes are there to existing one.
+		* 			create - drop the existing tables and re-create it.
+		*/
+		properties.put("hibernate.hbm2ddl.auto", "update");
+		
 		return properties;
 	}
 	

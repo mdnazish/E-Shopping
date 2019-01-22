@@ -24,6 +24,14 @@
               <a class="nav-link" href="${contextRoot}/contactUs">Contact Us</a>
             </li>
           </ul>
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-item register">
+              <a class="nav-link" href="${contextRoot}/register">Sign Up</a>
+            </li>
+            <li class="nav-item login">
+              <a class="nav-link" href="${contextRoot}/login">Login</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

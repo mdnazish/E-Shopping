@@ -2,12 +2,16 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans     
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd
    http://www.springframework.org/schema/mvc 
-   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/webflow-config
+	http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
+
 	<!-- for scanning Specific package component -->
 	<!-- <context:component-scan base-package = "com.mn.onlineshopping.controller" 
 		/> -->
@@ -30,10 +34,60 @@
 
 	<!-- id must be multipartResolver -->
 	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
 	<!-- Loading static resources -->
 	<mvc:annotation-driven />
 	<mvc:resources location="/assets/"
 		mapping="/resources/**" />
+
+	<!-- Webflow Configuration -->
+
+	<!-- entry point for the webflow -->
+	<webflow:flow-executor id="flowExecutor" />
+
+	<!-- How this webflow f/w will know which flow to execute & when it is trigger. 
+		- To find the web flows of the application -->
+	<webflow:flow-registry id="flowRegistry"
+		base-path="/WEB-INF/views/flows"
+		flow-builder-services="flowBuilderServices">
+		<webflow:flow-location-pattern
+			value="/**/*-flow.xml" />
+	</webflow:flow-registry>
+
+	<!-- To Resolve the view & to customize the flow-registry to provide addition 
+		configuration -->
+	<webflow:flow-builder-services
+		id="flowBuilderServices" view-factory-creator="viewFactoryCreator"
+		validator="validator" />
+
+	<!-- FlowHandlerAdapter is the bridge between DispatcherServlet and the 
+		web flow-executor. - To handle requests and manipulate the flow based on 
+		those requests. -->
+
+	<bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
+	</bean>
+
+	<!-- FlowHandlerMapping helps DispatcherServlet, know to send flow requests 
+		to the FlowHandlerAdapter -->
+	<bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry" />
+		<!-- this property gives high preference for our flow-id(like- register) 
+			If similar mapping is present in PageController class with RequestMapping(value="/register") -->
+		<property name="order" value="-1" />
+	</bean>
+
+	<!-- MvcViewFactoryCreator will point to the view resolver -->
+	<bean id="viewFactoryCreator"
+		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers" ref="viewResolver" />
+	</bean>
+
+	<!-- Spring validator for form subbmission -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
 </beans>

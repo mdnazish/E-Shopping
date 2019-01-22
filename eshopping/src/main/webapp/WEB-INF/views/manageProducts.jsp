@@ -12,7 +12,7 @@
 			</div>
 		</c:if>
 		<div class="col-md-8 offset-md-2">
-			<div class="card">
+			<div class="card card-primary">
 				<div class="card-header bg-primary text-white">
 					<h5>
 						<strong>Product Management</strong>
@@ -25,7 +25,7 @@
 							action="${contextRoot}/manage/products" method="POST"
 							enctype="multipart/form-data">
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="name">Enter
+								<label class="col-form-label col-sm-4" for="name">Enter
 									Product Name :</label>
 								<div class=" col-md-8">
 									<sf:input class="form-control" type="text" path="name"
@@ -34,7 +34,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="brand">Enter
+								<label class="col-form-label col-sm-4" for="brand">Enter
 									Brand Name :</label>
 								<div class=" col-md-8">
 									<sf:input class=" form-control" type="text" path="brand"
@@ -43,7 +43,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="description">Product
+								<label class="col-form-label col-sm-4" for="description">Product
 									Description :</label>
 								<div class=" col-md-8">
 									<sf:textarea class="form-control" path="description"
@@ -53,7 +53,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="unitPrice">Enter
+								<label class="col-form-label col-sm-4" for="unitPrice">Enter
 									Unit Price <b>(&#8377;)</b> :
 								</label>
 								<div class=" col-md-8">
@@ -63,7 +63,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="quantity">Quantity
+								<label class="col-form-label col-sm-4" for="quantity">Quantity
 									Available :</label>
 								<div class=" col-md-8">
 									<sf:input class=" form-control" type="number" path="quantity"
@@ -72,7 +72,7 @@
 							</div>
 							<!-- File element for Image Upload -->
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="file">Select
+								<label class="col-form-label col-sm-4" for="file">Select
 									an Image :</label>
 								<div class=" col-md-8">
 									<sf:input class="form-control" type="file" path="file"
@@ -81,7 +81,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-md-4" for="categoryId">Select
+								<label class="col-form-label col-sm-4" for="categoryId">Select
 									Category :</label>
 								<div class=" col-md-8">
 									<sf:select class="form-control" id="categoryId" path="categoryId"

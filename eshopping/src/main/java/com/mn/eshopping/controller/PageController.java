@@ -137,6 +137,17 @@ public class PageController {
 		return mv;
 	}
 	
+	/**
+	 * Just for Demonstration
+	 */
+	@RequestMapping(value = "/register")
+	public ModelAndView register() {
+
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Sing Up");
+		return mv;
+	}
+	
 
 	/** Just for Demonstration to understand 
 	 * 		@RequestParam and

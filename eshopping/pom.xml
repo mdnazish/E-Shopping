@@ -15,13 +15,13 @@
 	</properties>
 
 	<dependencies>
-	
-	<!-- Linking eshoppingbackend project -->
-	<dependency>
-	<groupId>com.mn</groupId>
-	<artifactId>eshoppingbackend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	</dependency>
+
+		<!-- Linking eshoppingbackend project -->
+		<dependency>
+			<groupId>com.mn</groupId>
+			<artifactId>eshoppingbackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<!-- Java EE API -->
 		<dependency>
@@ -45,28 +45,35 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
-			<exclusion>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+		<!-- Spring Web Flow -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.5.1.RELEASE</version>
+		</dependency>
+
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<!-- Update to latest version of Java -->
@@ -81,5 +88,5 @@
 		</plugins>
 		<finalName>eshopping</finalName>
 	</build>
-	
+
 </project>
