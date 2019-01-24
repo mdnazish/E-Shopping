@@ -36,6 +36,12 @@ ${contextRoot} says - ${greeting}
 <meta name="description" content="">
 <meta name="author" content="">
 
+<!-- to avoid Console Error HTTP Status 403: 
+	- when we activate or deactivate product from "Manage Product" tab
+	- & write ajax code to handle this problem in "eshopping.js" file-->
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <title>Shopping Cart - ${title}</title>
 
 <script>

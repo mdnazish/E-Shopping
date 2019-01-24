@@ -28,6 +28,18 @@ $(function() {
 		break;
 	}
 
+	// to tackle the csrf token problem for activation or deactivation of a product from "Manage Product " tab
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if(token.length > 0 && header.length > 0){
+		
+		// set the token header for the AJAX request
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(header, token);
+		});
+	}
+	
 	// Demo Purpose
 	// code for jquery dataTable
 	// create a dataset
@@ -336,7 +348,7 @@ $(function() {
 		});
 	}
 
-	// methods required for validation
+	// this method is required for validation
 	function errorPlacement(error, element) {
 
 		// Add the 'help-block' class to the error element
@@ -350,5 +362,39 @@ $(function() {
 		element.parents(".validate").addClass("has-feedback");
 	}
 	// --------------------------
+	
+	// jQuery Validation Code
+	// Code for Client-side Form Validation [For- login]
 
+	var $loginForm = $('#loginForm');
+
+	if ($loginForm.length) {
+
+		$loginForm.validate({
+			rules : {
+				username : {
+					required : true,
+					email : true
+				},
+				password : {
+					required : true,
+				}
+			},
+			messages : {
+				username : {
+					required : 'Please enter username!',
+					email : 'Please enter valid email address!'
+				},
+				password : {
+					required : 'Please enter your password!',
+				}
+			},
+			errorElement : "em",
+			errorPlacement : function(error, element) {
+				errorPlacement(error, element);
+			}
+		});
+	}
+	//----------------------------------------------
+	
 });

@@ -12,6 +12,7 @@
 	<properties>
 		<javaee.version>8.0</javaee.version>
 		<spring.version>4.3.18.RELEASE</spring.version>
+		<spring.security.version>4.2.3.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +38,13 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<!-- spring web mvc -->
@@ -65,11 +73,23 @@
 			<version>2.5.1.RELEASE</version>
 		</dependency>
 
-		<!-- JSTL -->
+		<!-- Spring Security -->
 		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 	</dependencies>
