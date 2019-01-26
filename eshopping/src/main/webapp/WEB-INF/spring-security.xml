@@ -29,9 +29,26 @@
 	 -->
 	<http>
 		<!-- To give login access to all the Website User [Order is same as given below for "intercept-url" attribute]-->
+		
+		<!--  For Demonstration -->
+		<!--
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/**" access="hasAuthority('USER')" />
 		<form-login login-page="/login" />
+		 -->
+		
+		<!-- Only ADMIN can access -->
+		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')"/>
+		
+		<!-- Only USER can access (who is registered with this site)-->
+		<intercept-url pattern="/cart/**" access="hasAuthority('USER')"/>
+		
+		<!-- Rest of the Users -->
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login" />
+		
+		<!-- To handle errors login permission -->
+		<access-denied-handler error-page="/access-denied"/>
 		
 		<!-- To avoid client-side error - HTTP Status 403: couldn't verify the provided CSRF token because your session was not found. 
 			Solution-1: write below <csrf disabled="true"/>  OR
@@ -40,6 +57,7 @@
 		-->
 		
 		<!-- <csrf disabled="true"/>	 -->
+		
 		<logout />
 	</http>
 	
