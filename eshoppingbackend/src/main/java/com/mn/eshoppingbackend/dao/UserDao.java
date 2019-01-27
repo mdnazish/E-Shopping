@@ -28,6 +28,4 @@ public interface UserDao {
 	//add a cart for the user 
 	//boolean addCart(Cart cart); - After adding "cascade = CascadeType.ALL", we can avoid this method
 	
-	//update a cart for the user
-	boolean updateCart(Cart cart);
 }
