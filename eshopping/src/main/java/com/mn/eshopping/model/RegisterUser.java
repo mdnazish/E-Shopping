@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.mn.eshoppingbackend.dto.Address;
 import com.mn.eshoppingbackend.dto.User;
 
-public class Register implements Serializable{
+public class RegisterUser implements Serializable{
 
 	/**
 	 * 

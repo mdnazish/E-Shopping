@@ -3,9 +3,10 @@ package com.mn.eshopping.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.mn.eshopping.model.Register;
+import com.mn.eshopping.model.RegisterUser;
 import com.mn.eshoppingbackend.dao.UserDao;
 import com.mn.eshoppingbackend.dto.Address;
 import com.mn.eshoppingbackend.dto.Cart;
@@ -15,18 +16,21 @@ import com.mn.eshoppingbackend.dto.User;
 public class RegisterHandler {
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
-	public Register init() {
-		return new Register();
+	public RegisterUser init() {
+		return new RegisterUser();
 	}
 
-	public void addUser(Register register, User user) {
-		register.setUser(user);
+	public void addUser(RegisterUser registerUser, User user) {
+		registerUser.setUser(user);
 	}
 
-	public void addBillingAddress(Register register, Address billingAddress) {
-		register.setBillingAddress(billingAddress);
+	public void addBillingAddress(RegisterUser registerUser, Address billingAddress) {
+		registerUser.setBillingAddress(billingAddress);
 	}
 
 	// to validate personal detail for signup
@@ -58,21 +62,25 @@ public class RegisterHandler {
 		return transitionValue;
 	}
 
-	public String saveAll(Register register) {
+	public String saveAll(RegisterUser registerUser) {
 		String transitionValue = "success";
 
 		// fetch the user
-		User user = register.getUser();
+		User user = registerUser.getUser();
 		if (user.getRole().equals("USER")) {
 			Cart cart = new Cart();
 			cart.setUser(user);
 			user.setCart(cart);
 		}
+		
+		//set password in BCrypt mode
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
 		// save the user
 		userDao.addUser(user);
 
 		// fetch the address
-		Address billingAddress = register.getBillingAddress();
+		Address billingAddress = registerUser.getBillingAddress();
 
 		billingAddress.setUser(user);
 		billingAddress.setBilling(true);

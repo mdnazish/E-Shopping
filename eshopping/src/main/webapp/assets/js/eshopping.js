@@ -120,15 +120,27 @@ $(function() {
 											+ '/show/'
 											+ data
 											+ '/product" class="btn btn-primary"><span class="fa fa-eye"></span></a> &#160;';
-
-									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="fa fa-shopping-cart"></span></a> &#160;';
-									} else {
+									
+									// 'userRole' is declared in "navbar.jsp" to show different icon for "ADMIN" & "USER"
+									if (userRole == 'ADMIN') {
 										str += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add'
-												+ data
-												+ '/product" class="btn btn-success"><span class="fa fa-shopping-cart"></span></a> &#160;';
+											+ window.contextRoot
+											+ '/manage/'
+											+ data
+											+ '/product" class="btn btn-warning"><span class="fa fa-pencil"></span></a> &#160;';
+									}
+									else {
+										if (row.quantity < 1) {
+											str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="fa fa-shopping-cart"></span></a> &#160;';
+										} 
+										else {
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add'
+													+ data
+													+ '/product" class="btn btn-success"><span class="fa fa-shopping-cart"></span></a> &#160;';
+										}
+										
 									}
 									return str;
 								}
