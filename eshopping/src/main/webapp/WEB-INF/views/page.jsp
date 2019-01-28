@@ -111,6 +111,11 @@ ${contextRoot} says - ${greeting}
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
 			
+			<!-- Load only when user click show cart -->
+			<c:if test="${userClickShowCart == true }">
+				<%@include file="cart.jsp"%>
+			</c:if>
+			
 		</div>
 		<!-- Footer Linked here-->
 		<%@include file="./shared/footer.jsp"%>

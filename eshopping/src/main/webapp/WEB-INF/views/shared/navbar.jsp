@@ -49,7 +49,7 @@
            
            <!-- Only show to the User ( who is registered ) -->
 		   <security:authorize access="isAuthenticated()">
-			<li class="nav-item mt-2 dropdown">
+			<li id="cartDetails" class="nav-item mt-2 dropdown">
 				<a	class="nav-link dropdown-toggle" href="javascript:void(0)"
 					id="dropdownMenu1" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> 
@@ -59,7 +59,7 @@
 					
 					<!-- Only show to the User ( whose role is "USER" )-->
 					<security:authorize access="hasAuthority('USER')">
-						<a class="dropdown-item" href="${contextRoot}/cart"> <span
+						<a class="dropdown-item" href="${contextRoot}/cart/show"> <span
 							class="fa fa-shopping-cart"></span> <span class="badge">
 								${userModel.cart.cartLines}</span> - &#8377;
 								${userModel.cart.grandTotal}
