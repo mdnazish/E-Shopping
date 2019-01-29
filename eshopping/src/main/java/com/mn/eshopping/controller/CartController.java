@@ -35,7 +35,7 @@ public class CartController {
 				mv.addObject("message", "CartLine has been added successfully!");
 				break;
 			case "maximum":
-				mv.addObject("message", "Your CartLine has reached to add maximum Quantity!");
+				mv.addObject("message", "Your CartLine has already reached the maximum Quantity!");
 				break;
 			case "unavailable":
 				mv.addObject("message", "Sorry, No more Product Quantity is available for this product!");

@@ -49,6 +49,11 @@
            
            <!-- Only show to the User ( who is registered ) -->
 		   <security:authorize access="isAuthenticated()">
+		   <li class="nav-item active mt-2 cart">
+             	 	<a class="nav-link" href="${contextRoot}/cart/show"> 
+             	 		<i class="fa fa-shopping-cart"></i> ${userModel.cart.cartLines}
+             	 	</a>
+            </li>
 			<li id="cartDetails" class="nav-item mt-2 dropdown">
 				<a	class="nav-link dropdown-toggle" href="javascript:void(0)"
 					id="dropdownMenu1" role="button" data-toggle="dropdown"

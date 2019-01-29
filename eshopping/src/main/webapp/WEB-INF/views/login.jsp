@@ -70,7 +70,6 @@
 					<div class="row">
 						<div class="col-md-6 offset-md-2">
 							<div class="alert alert-danger">${message}</div>
-
 						</div>
 					</div>
 				</c:if>
@@ -80,7 +79,6 @@
 					<div class="row">
 						<div class="col-md-6 offset-md-2">
 							<div class="alert alert-success">${logout}</div>
-
 						</div>
 					</div>
 				</c:if>
